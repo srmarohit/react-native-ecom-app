@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 import { Button, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./OnBoardStyle";
 import AppLoading from "expo-app-loading";
-import { furnitures } from "../../const/furniture_data";
-import { loadProducts } from "../../redux/products/actions";
-import { useDispatch } from "react-redux";
 
 import {
   useFonts,
@@ -21,9 +18,10 @@ import {
   Roboto_900Black,
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
+import { useProductStore } from "../../zustand/products";
 
 function OnBoardingScreen({ navigation }) {
-  const dispatch = useDispatch();
+  const { products, loadProducts } = useProductStore((state) => state);
 
   let [fontsLoaded] = useFonts({
     Roboto_100Thin,
@@ -42,7 +40,7 @@ function OnBoardingScreen({ navigation }) {
 
   useEffect(() => {
     console.log("Home mount");
-    dispatch(loadProducts({ products: furnitures }));
+    loadProducts();
   }, []);
 
   if (!fontsLoaded) {

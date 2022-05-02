@@ -24,7 +24,6 @@ export default function StackNav() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Detail" component={DetailScreen} />
       <Stack.Screen name="Cart" component={CartScreen} />
-
       <Stack.Screen name="Settings" component={SettingScreen} />
       <Stack.Screen name="Catalog" component={CatScreen} />
     </Stack.Navigator>
