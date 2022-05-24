@@ -3,7 +3,6 @@ import { fetchBestSellingProduct } from "../services/products";
 
 export const useProductStore = create((set) => ({
   products: {},
-  carts: [],
 
   // functions
   loadProducts: async () => {
@@ -13,12 +12,10 @@ export const useProductStore = create((set) => ({
       // api calls to load products
       return {
         products: {
-          ...products,
+          ...state.products,
           best_selling: products?.search?.searchResult?.itemStacks[0]?.items,
         },
       };
     });
   },
-
-  // add to cart
 }));

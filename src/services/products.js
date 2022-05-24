@@ -13,3 +13,15 @@ export const fetchBestSellingProduct = () => {
     .then((res) => res.data)
     .catch((err) => console.log("Error" + err.message));
 };
+
+export const fetchCartProduct = (usItemId) => {
+  const options = {
+    method: "GET",
+    params: { usItemId },
+    headers: headers,
+  };
+  return fetch(base_url + "/products/v3/get-details", options)
+    .then((res) => res.json())
+    .then((res) => res.data)
+    .catch((err) => console.log("Error" + err.message));
+};

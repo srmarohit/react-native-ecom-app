@@ -17,10 +17,7 @@ function HorizontalScrollDisplayCard({ card_type, rank, ...props }) {
   // }, []);
 
   useEffect(() => {
-    const popular_products = best_selling?.filter((product) =>
-      product.rank.includes(rank)
-    );
-    setPopular(popular_products || best_selling.slice(0, 5));
+    setPopular(best_selling.slice(0, 5));
   }, []);
 
   const SelectCard = (props) => {
@@ -39,7 +36,7 @@ function HorizontalScrollDisplayCard({ card_type, rank, ...props }) {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <SelectCard key={item.id} furniture={item} {...props} />
+          <SelectCard key={item.id} product={item} {...props} />
         )}
       />
     </View>

@@ -8,6 +8,7 @@ import StepIndicator from "react-native-step-indicator";
 import { useSelector } from "react-redux";
 import CubeCard from "../../components/cards/cube_cards/CubeCard";
 import { furnitures } from "../../const/furniture_data";
+import { useProductStore } from "../../zustand/products";
 import { styles } from "./TrackOrderStyle";
 
 const customStyles = {
@@ -53,12 +54,14 @@ const data = [
   },
   {
     label: "Delivered",
-    status: "Your Order is Delivered Successfully !",
+    status: "Your Order is about to Deliver  !",
     date: " 24 Nov 2021, 12:34:22 PM",
   },
 ];
 
 export default function TrackOrderScreen({ navigation }) {
+  const { best_selling } = useProductStore((state) => state.products);
+
   const [currentPosition, setCurrentPostion] = useState(2);
 
   return (
@@ -77,18 +80,18 @@ export default function TrackOrderScreen({ navigation }) {
             <Text style={styles.headerText}>Order Summary</Text>
           </View>
           <View style={styles.orderInfo}>
-            <Text style={styles.orderId}>Order Id : 7777777777</Text>
+            <Text style={styles.orderId}>Order Id : 712345456789</Text>
             <Text style={styles.orderTotal}>Total : $885.55</Text>
             <Text style={styles.viewDetails}>View Details</Text>
           </View>
           <View style={styles.prodList}>
             <FlatList
-              data={furnitures}
+              data={best_selling.slice(0, 6)}
               horizontal
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <CubeCard key={item.id} furniture={item} />
+                <CubeCard key={item.id} product={item} />
               )}
             />
           </View>

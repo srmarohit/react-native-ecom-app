@@ -1,21 +1,23 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/products/actions";
+import { useCartStore } from "../../zustand/cart";
+import { useProductStore } from "../../zustand/products";
 import QtyController from "../qty-controller/QtyController";
 
 import styles from "./addToCartStyle";
 
-function AddToCart({ furniture, navigation }) {
-  const dispatch = useDispatch();
+function AddToCart({ product, navigation }) {
+  const { addToCart } = useCartStore((state) => state);
 
   const [qty, setQty] = useState(1);
 
   return (
     <>
       <View style={styles.priceContainer}>
-        <Text style={styles.price}>${furniture.price}</Text>
+        <Text style={styles.price}>
+          ${product.priceInfo?.currentPrice?.price}
+        </Text>
         <QtyController qty={qty} setQty={setQty} />
       </View>
       <View style={styles.cartBtnContainer}>
@@ -23,14 +25,18 @@ function AddToCart({ furniture, navigation }) {
           <FontAwesome5
             name="heart"
             size={24}
-            color={furniture.liked ? "red" : "black"}
+            color={product.liked ? "red" : "black"}
           />
         </View>
         <Text
           style={styles.addToCart}
           onPress={() => {
+            addToCart({
+              id: product.id,
+              usItemId: product.usItemId,
+              qty,
+            });
             navigation.navigate("Cart");
-            dispatch(addToCart({ ...furniture, qty }));
           }}
         >
           Add To Cart{" "}

@@ -39,7 +39,7 @@ export default function HomeScreen(props) {
           searchText={searchText}
           selectedCat={selectedCat}
         />
-        {/* 
+
         <Title title="Best Selling Furnitures" width="80%" />
         <HorizontalScrollDisplayCard
           card_type="cube"
@@ -48,7 +48,7 @@ export default function HomeScreen(props) {
         />
 
         <Title title="Popular Products" />
-        <HorizontalScrollDisplayCard rank="popular" {...props} /> */}
+        <HorizontalScrollDisplayCard rank="popular" {...props} />
       </ScrollView>
     </SafeAreaView>
   );

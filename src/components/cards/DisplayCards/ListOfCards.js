@@ -10,15 +10,15 @@ export default function ListOfCards(props) {
   useEffect(() => {
     // console.log({ info: props.searchText, top_products });
     let filt_products = [];
-    // if (props.searchText) {
-    //   filt_products = best_selling?.filter((product) =>
-    //     product.name.includes(props.searchText)
-    //   );
-    // } else if (props.selectedCat !== "all") {
-    //   filt_products = best_selling?.filter((product) =>
-    //     product.cat.includes(props.selectedCat)
-    //   );
-    // }
+    if (props.searchText) {
+      filt_products = best_selling?.filter((product) =>
+        product.name.includes(props.searchText)
+      );
+    } else if (props.selectedCat !== "all") {
+      // filt_products = best_selling?.filter((product) =>
+      //   product.cat.includes(props.selectedCat)
+      // );
+    }
 
     // console.log({
     //   info: props.searchText,
@@ -26,12 +26,11 @@ export default function ListOfCards(props) {
     //   filt_products,
     // });
 
-    // if (filt_products && filt_products.length) {
-    //   setTopProducts(filt_products);
-    // } else {
-    //   setTopProducts(best_selling?.slice(0, 6) || []);
-    // }
-    setTopProducts(best_selling?.slice(0, 6) || []);
+    if (filt_products && filt_products.length) {
+      setTopProducts(filt_products);
+    } else {
+      setTopProducts(best_selling?.slice(0, 6) || []);
+    }
   }, [props.searchText, props.selectedCat]);
 
   return (

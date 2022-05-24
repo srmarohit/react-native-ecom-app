@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import COLORS from "../../../const/colors";
 import pt from "../../../const/units";
+import { useCartStore } from "../../../zustand/cart";
+import { useProductStore } from "../../../zustand/products";
 
 export default function SubTotal() {
-  const { cart } = useSelector((state) => state.prodReducer);
-  console.log(cart);
+  const { subTotal } = useCartStore((state) => state);
 
   return (
     <View style={styles.container}>
       <Text style={styles.sub_text}>SubTotal :</Text>
-      <Text style={styles.sub_value}>${cart.subtotal}</Text>
+      <Text style={styles.sub_value}>${subTotal}</Text>
     </View>
   );
 }

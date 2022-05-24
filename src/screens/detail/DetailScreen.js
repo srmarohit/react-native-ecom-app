@@ -8,17 +8,17 @@ import ImgCard from "../../components/image-overlay/ImgCard";
 import { styles } from "./DetailStyle";
 export default function DetailScreen({ navigation, route }) {
   //console.log(props);
-  const furniture = route.params;
+  const product = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
       <SecondaryHeader navigation={navigation} title="Details" />
-      <ImgCard furniture={furniture} />
+      <ImgCard product={product} />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.detailsContainer}>
-          <Details furniture={furniture} />
-          <AddToCart furniture={furniture} navigation={navigation} />
+          <Details product={product} />
+          <AddToCart product={product} navigation={navigation} />
         </View>
       </ScrollView>
     </SafeAreaView>

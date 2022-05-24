@@ -11,6 +11,7 @@ import SettingScreen from "../../screens/settings/SettingScreen";
 import DetailScreen from "../../screens/detail/DetailScreen";
 import CartScreen from "../../screens/cart/CartScreen";
 import TrackOrderScreen from "../../screens/trackorder/TrackOrder";
+import OnBoardingScreen from "../../screens/onboard/OnBoardingScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +31,16 @@ const DrawerNav = () => {
         },
       }}
     >
+      <Drawer.Screen
+        name="Onboard"
+        component={OnBoardingScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Ionicons name="home-outline" size={22} color={color} />
+          ),
+        }}
+      />
+
       <Drawer.Screen
         name="Home"
         component={HomeScreen}

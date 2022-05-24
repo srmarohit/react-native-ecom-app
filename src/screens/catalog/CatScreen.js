@@ -5,8 +5,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { furniture_cat } from "../../const/furniture_data";
+import ListOfCards from "../../components/cards/DisplayCards/ListOfCards";
 
-function CatScreen() {
+function CatScreen(props) {
   const [cat, setCat] = useState("Categories");
   // To get the curretn Status of menu ...
   const [showMenu, setShowMenu] = useState(false);
@@ -89,6 +90,7 @@ function CatScreen() {
 
         <Animated.View
           style={{
+            paddingBottom: 20,
             transform: [
               {
                 translateY: closeButtonOffset,
@@ -143,13 +145,10 @@ function CatScreen() {
           </View>
 
           {/* {// Content of Products } */}
-          <ScrollView
-            contentContainerStyle={{
-              paddingHorizontal: 20,
-              paddingVertical: 25,
-            }}
-          >
-            <Text>Category One</Text>
+          <ScrollView>
+            <ListOfCards {...props} />
+            <ListOfCards {...props} />
+            <ListOfCards {...props} />
           </ScrollView>
         </Animated.View>
       </Animated.View>
