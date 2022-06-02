@@ -1,11 +1,16 @@
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 import COLORS from "../../../const/colors";
 
 import styles from "./squareCardStyles";
 
 function SquareCard({ product, navigation }) {
+  const { wishlist } = useSelector((state) => state.cartReducer);
+
+  const liked = wishlist.find((id) => id == product.id);
+
   return (
     <Pressable onPress={() => navigation.navigate("Detail", product)}>
       <View style={styles.container}>
@@ -14,7 +19,7 @@ function SquareCard({ product, navigation }) {
             name="heart"
             style={{ top: 2 }}
             size={18}
-            color={product.liked ? "red" : "black"}
+            color={liked ? "red" : "black"}
           />
         </View>
         <Image

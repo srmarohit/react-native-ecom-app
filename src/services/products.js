@@ -20,6 +20,7 @@ export const fetchCartProduct = (usItemId) => {
     params: { usItemId },
     headers: headers,
   };
+
   return fetch(base_url + "/products/v3/get-details", options)
     .then((res) => res.json())
     .then((res) => res.data)

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: COLORS.dark,
     paddingVertical: 5 * pt,
-    paddingHorizontal: 10 * pt,
+    paddingHorizontal: 5 * pt,
     borderTopLeftRadius: 10 * pt,
     borderBottomRightRadius: 10 * pt,
   },
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   qty: {
     fontWeight: "bold",
     fontSize: 15 * pt,
-    marginHorizontal: 10 * pt,
+    marginHorizontal: 7 * pt,
     color: COLORS.light,
   },
 

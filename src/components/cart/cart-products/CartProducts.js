@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 import CubeCard from "../../cards/cube_cards/CubeCard";
 
 const { height } = Dimensions.get("screen");
 
-function CartProducts(props) {
+function CartProducts({ products, ...props }) {
   return (
     <View style={styles.container}>
-      {/* <FlatList
+      <FlatList
         showsVerticalScrollIndicator={false}
         data={products || []}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <CubeCard key={item.id} product={item} cart_mode {...props} />
         )}
-      /> */}
+      />
     </View>
   );
 }

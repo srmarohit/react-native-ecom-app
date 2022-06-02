@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
+import { useSelector } from "react-redux";
 import { useProductStore } from "../../../zustand/products";
 import CubeCard from "../cube_cards/CubeCard";
 import SquareCard from "../square_cards/SquareCard";
 
 function HorizontalScrollDisplayCard({ card_type, rank, ...props }) {
-  const { best_selling } = useProductStore((state) => state.products);
+  // const { best_selling } = useProductStore((state) => state.products);
+
+  const { best_selling } = useSelector(
+    (state) => state.prodReducer?.products || {}
+  );
+
+  //console.log("Dd   " + JSON.stringify(state.prodReducer._W.products));
 
   const [popular, setPopular] = useState([]);
 
@@ -17,7 +24,7 @@ function HorizontalScrollDisplayCard({ card_type, rank, ...props }) {
   // }, []);
 
   useEffect(() => {
-    setPopular(best_selling.slice(0, 5));
+    setPopular(best_selling?.slice(0, 5));
   }, []);
 
   const SelectCard = (props) => {

@@ -9,7 +9,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/user/action";
 function CustomDrawer(props) {
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <DrawerContentScrollView
@@ -85,8 +89,9 @@ function CustomDrawer(props) {
                 fontSize: 18,
                 marginLeft: 7,
               }}
+              onPress={() => dispatch(logout())}
             >
-              Sign Out
+              Log Out
             </Text>
           </View>
         </TouchableOpacity>

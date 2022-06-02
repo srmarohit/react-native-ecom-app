@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { useProductStore } from "../../../zustand/products";
+import { useSelector } from "react-redux";
 import SquareCard from "../square_cards/SquareCard";
 
 export default function ListOfCards(props) {
-  const { best_selling } = useProductStore((state) => state.products);
+  const { best_selling } = useSelector((state) => {
+    //console.log(JSON.stringify(state));
+    return state.prodReducer?.products || {};
+  });
+
+  //console.log(best_selling && best_selling.length);
+
   const [top_products, setTopProducts] = useState([]);
 
   useEffect(() => {
@@ -29,7 +35,7 @@ export default function ListOfCards(props) {
     if (filt_products && filt_products.length) {
       setTopProducts(filt_products);
     } else {
-      setTopProducts(best_selling?.slice(0, 6) || []);
+      setTopProducts(best_selling?.slice(8, 16) || []);
     }
   }, [props.searchText, props.selectedCat]);
 

@@ -11,6 +11,7 @@ import DetailScreen from "../../screens/detail/DetailScreen";
 import CartScreen from "../../screens/cart/CartScreen";
 import SettingScreen from "../../screens/settings/SettingScreen";
 import CatScreen from "../../screens/catalog/CatScreen";
+import Auth from "../../components/auth/Auth";
 
 // create Stack
 const Stack = createNativeStackNavigator();
@@ -19,8 +20,7 @@ export default function StackNav() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="OnBoard" component={OnBoardingScreen} />
-      <Stack.Screen name="TrackOrder" component={TrackOrderScreen} />
-      <Stack.Screen name="Orders" component={OrderScreen} />
+      <Stack.Screen name="Auth" component={Auth} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Detail" component={DetailScreen} />
       <Stack.Screen name="Cart" component={CartScreen} />

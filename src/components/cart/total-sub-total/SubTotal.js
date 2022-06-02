@@ -3,16 +3,14 @@ import { StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import COLORS from "../../../const/colors";
 import pt from "../../../const/units";
-import { useCartStore } from "../../../zustand/cart";
-import { useProductStore } from "../../../zustand/products";
 
 export default function SubTotal() {
-  const { subTotal } = useCartStore((state) => state);
+  const { cart } = useSelector((state) => state.cartReducer);
 
   return (
     <View style={styles.container}>
       <Text style={styles.sub_text}>SubTotal :</Text>
-      <Text style={styles.sub_value}>${subTotal}</Text>
+      <Text style={styles.sub_value}>${cart.subtotal || 0.0}</Text>
     </View>
   );
 }

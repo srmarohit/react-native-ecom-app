@@ -6,9 +6,10 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { furniture_cat } from "../../const/furniture_data";
 import ListOfCards from "../../components/cards/DisplayCards/ListOfCards";
+import { Ionicons } from "@expo/vector-icons";
 
 function CatScreen(props) {
-  const [cat, setCat] = useState("Categories");
+  const [cat, setCat] = useState("all");
   // To get the curretn Status of menu ...
   const [showMenu, setShowMenu] = useState(false);
 
@@ -20,7 +21,7 @@ function CatScreen(props) {
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
   const showCat = (item) => (
-    <TouchableOpacity
+    <View
       key={item.id}
       style={{
         justifyContent: "center",
@@ -30,14 +31,14 @@ function CatScreen(props) {
       }}
     >
       <MaterialCommunityIcons
+        onPress={() => {
+          setCat(item.name);
+        }}
         name={item.iconName}
         color={cat == item.name ? "orange" : "#eee"}
         size={30}
       />
       <Text
-        onPress={() => {
-          setCat(item.name);
-        }}
         style={{
           color: cat == item.name ? "orange" : "#eee",
           fontWeight: "500",
@@ -47,7 +48,7 @@ function CatScreen(props) {
       >
         {item.name}
       </Text>
-    </TouchableOpacity>
+    </View>
   );
 
   return (
@@ -59,6 +60,14 @@ function CatScreen(props) {
         justifyContent: "flex-start",
       }}
     >
+      <View style={{ paddingHorizontal: 25, paddingVertical: 10 }}>
+        <Ionicons
+          name="arrow-back-circle-outline"
+          size={24}
+          color="white"
+          onPress={() => props.navigation.navigate("Home")}
+        />
+      </View>
       <FlatList
         data={furniture_cat}
         vertical

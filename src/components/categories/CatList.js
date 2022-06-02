@@ -2,8 +2,9 @@ import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import Category from "./Category";
 import { furniture_cat } from "../../const/furniture_data";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
-function CatList(props) {
+function CatList({ navigation, ...props }) {
   // const furniture_cat = [
   //   { id: 0, name: "Chair", iconName: "seat" },
   //   { id: 1, name: "Table", iconName: "chair-rolling" },
@@ -15,6 +16,13 @@ function CatList(props) {
   // ];
   return (
     <View style={styles.container}>
+      <SimpleLineIcons
+        name="options-vertical"
+        size={24}
+        color="black"
+        onPress={() => navigation.navigate("Catalog")}
+      />
+
       <FlatList
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingLeft: 20 }}
@@ -32,6 +40,7 @@ export default CatList;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    // padding: 20,
+    alignItems: "center",
+    padding: 20,
   },
 });

@@ -29,7 +29,11 @@ export default function HomeScreen(props) {
         <Search searchProps={{ searchText, setSearchText }} />
 
         {/** Display Categories */}
-        <CatList selectedCat={selectedCat} setSelectedCat={setSelectedCat} />
+        <CatList
+          selectedCat={selectedCat}
+          setSelectedCat={setSelectedCat}
+          navigation={props.navigation}
+        />
 
         <Title title="Top Furnitures" />
 

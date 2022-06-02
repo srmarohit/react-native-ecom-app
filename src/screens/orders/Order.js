@@ -6,7 +6,7 @@ export default function OrderScreen({ navigation }) {
   return (
     <SafeAreaView>
       <View>
-        <Text>ddddd</Text>
+        <Text>Order UI in Progress</Text>
       </View>
     </SafeAreaView>
   );

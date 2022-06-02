@@ -1,16 +1,24 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
-import { useCartStore } from "../../zustand/cart";
-import { useProductStore } from "../../zustand/products";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  addToWishlist,
+  removeFromWishlist,
+} from "../../redux/cart/actions";
 import QtyController from "../qty-controller/QtyController";
 
 import styles from "./addToCartStyle";
 
 function AddToCart({ product, navigation }) {
-  const { addToCart } = useCartStore((state) => state);
-
   const [qty, setQty] = useState(1);
+
+  const dispatch = useDispatch();
+
+  const { wishlist } = useSelector((state) => state.cartReducer);
+
+  const liked = wishlist.find((id) => id == product.id);
 
   return (
     <>
@@ -25,17 +33,23 @@ function AddToCart({ product, navigation }) {
           <FontAwesome5
             name="heart"
             size={24}
-            color={product.liked ? "red" : "black"}
+            color={liked ? "red" : "black"}
+            onPress={() =>
+              liked
+                ? dispatch(removeFromWishlist(product.id))
+                : dispatch(addToWishlist(product.id))
+            }
           />
         </View>
         <Text
           style={styles.addToCart}
           onPress={() => {
-            addToCart({
-              id: product.id,
-              usItemId: product.usItemId,
-              qty,
-            });
+            dispatch(
+              addToCart({
+                ...product,
+                qty,
+              })
+            );
             navigation.navigate("Cart");
           }}
         >

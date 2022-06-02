@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
 import CartProducts from "../../components/cart/cart-products/CartProducts";
 import Total from "../../components/cart/cart-total/Total";
 import SecondaryHeader from "../../components/headers/SecondaryHeader";
-import { useCartStore } from "../../zustand/cart";
 
 function CartScreen({ navigation }) {
-  const { products } = useCartStore((state) => state);
+  const { cart } = useSelector((state) => state.cartReducer);
 
-  const [cartProducts, setCartProducts] = useState([]);
+  // const [cartProducts, setCartProducts] = useState([]);
 
-  if (!Object.keys(products).length) {
+  if (!cart.products || !cart.products?.length) {
     return (
       <SafeAreaView>
         <SecondaryHeader navigation={navigation} title="Cart" />
@@ -28,19 +28,11 @@ function CartScreen({ navigation }) {
     );
   }
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      Object.keys().map((id, index) => {
-        // fetching data
-      });
-    };
-  });
-
   return (
     <SafeAreaView>
       <SecondaryHeader navigation={navigation} title="Cart" />
       {/** Cart List */}
-      <CartProducts navigation={navigation} />
+      <CartProducts navigation={navigation} products={cart?.products || []} />
       {/** Total Price */}
       <Total />
       <Button variant="contained" size="lg" title="Checkout" fullWidth />

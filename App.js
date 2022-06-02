@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { Provider, useSelector } from "react-redux";
 import { Store } from "./src/redux/store";
 import StackNav from "./src/navigations/stack/StackNav";
 import DrawerNav from "./src/navigations/drawer/DrawerNav";
@@ -13,12 +14,21 @@ import DrawerNav from "./src/navigations/drawer/DrawerNav";
 // create Stack
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export function Main() {
+  const { user } = useSelector((state) => state.userReducer);
+  console.log(user);
   return (
     <NavigationContainer>
-      {/* <DrawerNav /> */}
-      <StackNav />
+      {user ? <DrawerNav /> : <StackNav />}
     </NavigationContainer>
+  );
+}
+
+export default function App() {
+  return (
+    <Provider store={Store}>
+      <Main />
+    </Provider>
   );
 }
 

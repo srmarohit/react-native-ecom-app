@@ -60,7 +60,7 @@ const data = [
 ];
 
 export default function TrackOrderScreen({ navigation }) {
-  const { best_selling } = useProductStore((state) => state.products);
+  //const { best_selling } = useProductStore((state) => state.products);
 
   const [currentPosition, setCurrentPostion] = useState(2);
 
@@ -69,15 +69,17 @@ export default function TrackOrderScreen({ navigation }) {
       <View style={styles.container}>
         <StatusBar backgroundColor="#000" barStyle="light-content" />
         <View style={styles.header}>
-          <View style={styles.headerTitle}>
+          <View style={styles.headerTitle} onPress={() => console.log("rr")}>
             <Feather
               name="chevron-left"
               size={24}
               color="black"
               style={{ flex: 1 }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => console.log("qq")}
             />
-            <Text style={styles.headerText}>Order Summary</Text>
+            <Text style={styles.headerText} onPress={() => console.log("ss")}>
+              Order Summary
+            </Text>
           </View>
           <View style={styles.orderInfo}>
             <Text style={styles.orderId}>Order Id : 712345456789</Text>
@@ -85,7 +87,7 @@ export default function TrackOrderScreen({ navigation }) {
             <Text style={styles.viewDetails}>View Details</Text>
           </View>
           <View style={styles.prodList}>
-            <FlatList
+            {/* <FlatList
               data={best_selling.slice(0, 6)}
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -93,7 +95,7 @@ export default function TrackOrderScreen({ navigation }) {
               renderItem={({ item }) => (
                 <CubeCard key={item.id} product={item} />
               )}
-            />
+            /> */}
           </View>
         </View>
 
@@ -105,7 +107,7 @@ export default function TrackOrderScreen({ navigation }) {
             stepCount={4}
             direction="vertical"
             renderLabel={({ position, label, stepStatus, currentPosition }) => {
-              console.log(position, label, stepStatus, currentPosition);
+              //console.log(position, label, stepStatus, currentPosition);
               return (
                 <View style={styles.lblContainer}>
                   <Text style={styles.lblText}>{data[position]?.label}</Text>

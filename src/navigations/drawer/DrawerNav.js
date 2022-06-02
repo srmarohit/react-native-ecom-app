@@ -12,10 +12,18 @@ import DetailScreen from "../../screens/detail/DetailScreen";
 import CartScreen from "../../screens/cart/CartScreen";
 import TrackOrderScreen from "../../screens/trackorder/TrackOrder";
 import OnBoardingScreen from "../../screens/onboard/OnBoardingScreen";
+import { useSelector } from "react-redux";
+import {
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Octicons,
+} from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNav = () => {
+  const { user } = useSelector((state) => state.userReducer);
+
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}
@@ -26,21 +34,11 @@ const DrawerNav = () => {
         drawerInactiveTintColor: "#333",
         drawerLabelStyle: {
           marginLeft: -25,
-          fontFamily: "Roboto-Medium",
+          // fontFamily: "Roboto-Medium",
           fontSize: 15,
         },
       }}
     >
-      <Drawer.Screen
-        name="Onboard"
-        component={OnBoardingScreen}
-        options={{
-          drawerIcon: ({ color }) => (
-            <Ionicons name="home-outline" size={22} color={color} />
-          ),
-        }}
-      />
-
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
@@ -50,21 +48,24 @@ const DrawerNav = () => {
           ),
         }}
       />
-      <Drawer.Screen
-        name="Orders"
-        component={OrderScreen}
-        options={{
-          drawerIcon: ({ color }) => (
-            <Ionicons name="person-outline" size={22} color={color} />
-          ),
-        }}
-      />
+      {user && (
+        <Drawer.Screen
+          name="Orders"
+          component={OrderScreen}
+          options={{
+            drawerIcon: ({ color }) => (
+              <Octicons name="bookmark" size={22} color={color} />
+            ),
+          }}
+        />
+      )}
+
       <Drawer.Screen
         name="Cart"
         component={CartScreen}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="chatbox-ellipses-outline" size={22} color={color} />
+            <Ionicons name="cart" size={22} color={color} />
           ),
         }}
       />
@@ -85,25 +86,30 @@ const DrawerNav = () => {
           drawerIcon: ({ color }) => (
             <Ionicons name="settings-outline" size={22} color={color} />
           ),
+          drawerItemStyle: {
+            display: "none",
+          },
         }}
       />
 
-      <Drawer.Screen
-        name="TrackOrder"
-        component={TrackOrderScreen}
-        options={{
-          drawerIcon: ({ color }) => (
-            <Ionicons name="settings-outline" size={22} color={color} />
-          ),
-        }}
-      />
+      {user && (
+        <Drawer.Screen
+          name="TrackOrder"
+          component={TrackOrderScreen}
+          options={{
+            drawerIcon: ({ color }) => (
+              <MaterialIcons name="track-changes" size={22} color={color} />
+            ),
+          }}
+        />
+      )}
 
       <Drawer.Screen
         name="Catalog"
         component={CatScreen}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="settings-outline" size={22} color={color} />
+            <MaterialIcons name="category" size={22} color={color} />
           ),
         }}
       />
