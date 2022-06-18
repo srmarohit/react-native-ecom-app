@@ -1,8 +1,10 @@
 {
+  "displayName": "MyApp",
   "expo": {
-    "name": "App",
+    "name": "R Mart",
     "slug": "drawer",
     "version": "1.0.0",
+    "sdkVersion": "44.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
